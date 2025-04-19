@@ -7,23 +7,29 @@ import ru from './locales/ru.json';
 import en from './locales/en.json';
 import { Button } from '@shared/ui/Button/Button';
 import { FaUser } from 'react-icons/fa';
+import { useAuth } from '@app/providers/useAuth';
 
 const dict = { ru, en };
 
-const Header = ({ title }: { title: string }) => (
-    <header className={styles.header}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span>{title}</span>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <ButtonChangeTheme />
-                <ButtonChangeLang />
-                <Link to="/auth">
-                    <Button><FaUser style={{ marginRight: 8 }} />{dict[useI18n().lang].login || 'Войти'}</Button>
-                </Link>
+const Header = ({ title }: { title: string }) => {
+    const { isAuth } = useAuth();
+    return (
+        <header className={styles.header}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span>{title}</span>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                    <ButtonChangeTheme />
+                    <ButtonChangeLang />
+                    {!isAuth && (
+                        <Link to="/auth">
+                            <Button><FaUser style={{ marginRight: 8 }} />{dict[useI18n().lang].login || 'Войти'}</Button>
+                        </Link>
+                    )}
+                </div>
             </div>
-        </div>
-    </header>
-);
+        </header>
+    );
+};
 
 const Sidebar = ({ sidebar }: { sidebar: string }) => (
     <aside className={styles.sidebar}>
