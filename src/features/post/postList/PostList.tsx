@@ -22,7 +22,7 @@ export const PostList = ({ offset = 0, limit = 10 }: PostListProps) => {
                         <b>Автор:</b> {post.author_id} | <b>Дата:</b> {new Date(post.created_at).toLocaleDateString()}
                     </div>
                     <div>
-                        <b>Теги:</b> {post.tags.join(', ')}
+                        <b>Теги:</b> {Array.isArray(post.tags) ? post.tags.join(', ') : ''}
                     </div>
                     <div>
                         <b>Статус:</b> {post.status}
