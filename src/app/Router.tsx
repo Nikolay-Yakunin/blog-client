@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Suspense } from 'react';
+import Layout from '@shared/ui/Layout/Layout';
 
 const MainPage = () => <div>Главная страница</div>;
 const PostPage = () => <div>Страница поста (динамический id)</div>;
@@ -10,10 +11,12 @@ export const AppRouter = () => (
     <BrowserRouter>
         <Suspense fallback={<div>Загрузка...</div>}>
             <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/post/:id" element={<PostPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="*" element={<NotFoundPage />} />
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<MainPage />} />
+                    <Route path="post/:id" element={<PostPage />} />
+                    <Route path="profile" element={<ProfilePage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                </Route>
             </Routes>
         </Suspense>
     </BrowserRouter>
