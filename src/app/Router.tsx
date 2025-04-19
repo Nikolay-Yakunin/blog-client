@@ -10,7 +10,7 @@ const ProfilePage = () => <div>Профиль пользователя</div>;
 const NotFoundPage = () => <div>404 — Страница не найдена</div>;
 
 export const AppRouter = () => (
-    <BrowserRouter basename='/blog-sevice'>
+    <BrowserRouter basename='/blog-client'>
         <Suspense fallback={<div>Загрузка...</div>}>
             <Routes>
                 <Route path="/" element={<Layout />}>
