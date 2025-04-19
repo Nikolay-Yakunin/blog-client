@@ -1,0 +1,16 @@
+{
+  "title": "Title*",
+  "description": "Description",
+  "content": "Content (Markdown)*",
+  "preview": "Preview:",
+  "tags": "Tags (comma separated)",
+  "status": "Status",
+  "draft": "Draft",
+  "published": "Published",
+  "create": "Create post",
+  "success": "Post created successfully!",
+  "error": "Error creating post",
+  "required_title": "Title is required",
+  "required_content": "Content is required",
+  "preview_placeholder": "Markdown preview will appear here..."
+} 

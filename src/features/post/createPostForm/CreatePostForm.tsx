@@ -1,5 +1,29 @@
 import { useState } from "react";
 import { useCreatePostMutation } from "@entities/post/api";
+import styles from "./CreatePostForm.module.css";
+import { Button } from "@shared/ui/Button/Button";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { useI18n } from "@app/providers/I18nProvider";
+import ru from "./locales/ru.json";
+import en from "./locales/en.json";
+
+// Временный Loader
+const Loader = () => <div style={{ textAlign: 'center', padding: '8px' }}>Загрузка...</div>;
+// Временный ErrorMessage
+const ErrorMessage = ({ message }: { message: string }) => (
+    <div className={styles.error}>{message}</div>
+);
+
+const translations = { ru, en };
+
+type LocaleKey = keyof typeof ru;
+
+function useLocale() {
+    const { lang } = useI18n();
+    const t = (key: LocaleKey): string => translations[lang][key] || key;
+    return { t };
+}
 
 interface FormState {
     title: string;
@@ -21,11 +45,12 @@ export const CreatePostForm = () => {
     const [form, setForm] = useState(initialState);
     const [errors, setErrors] = useState<Partial<FormState>>({});
     const [createPost, { isLoading, isSuccess, error }] = useCreatePostMutation();
+    const { t } = useLocale();
 
     const validate = (): boolean => {
         const newErrors: Partial<FormState> = {};
-        if (!form.title.trim()) newErrors.title = "Заголовок обязателен";
-        if (!form.raw_content.trim()) newErrors.raw_content = "Контент обязателен";
+        if (!form.title.trim()) newErrors.title = t("required_title");
+        if (!form.raw_content.trim()) newErrors.raw_content = t("required_content");
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -47,54 +72,76 @@ export const CreatePostForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Заголовок*</label>
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.field}>
+                <label className={styles.label}>{t("title")}</label>
                 <input
+                    className={styles.input}
                     name="title"
                     value={form.title}
                     onChange={handleChange}
                     required
                 />
-                {errors.title && <span style={{ color: "red" }}>{errors.title}</span>}
+                {errors.title && <span className={styles.error}>{errors.title}</span>}
             </div>
-            <div>
-                <label>Описание</label>
+            <div className={styles.field}>
+                <label className={styles.label}>{t("description")}</label>
                 <input
+                    className={styles.input}
                     name="description"
                     value={form.description}
                     onChange={handleChange}
                 />
             </div>
-            <div>
-                <label>Контент (Markdown)*</label>
+            <div className={styles.field}>
+                <label className={styles.label}>{t("content")}</label>
                 <textarea
+                    className={styles.textarea}
                     name="raw_content"
                     value={form.raw_content}
                     onChange={handleChange}
                     rows={10}
                     required
                 />
-                {errors.raw_content && <span style={{ color: "red" }}>{errors.raw_content}</span>}
+                {errors.raw_content && <span className={styles.error}>{errors.raw_content}</span>}
             </div>
-            <div>
-                <label>Теги (через запятую)</label>
+            {/* Предпросмотр Markdown */}
+            <div className={styles.field}>
+                <label className={styles.label}>{t("preview")}</label>
+                <div style={{
+                    border: '1px solid #e0e0e0',
+                    borderRadius: 8,
+                    background: '#fafbfc',
+                    padding: 16,
+                    minHeight: 80,
+                    fontSize: '1rem',
+                    color: '#222',
+                    overflowX: 'auto',
+                }}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{form.raw_content || t("preview_placeholder")}</ReactMarkdown>
+                </div>
+            </div>
+            <div className={styles.field}>
+                <label className={styles.label}>{t("tags")}</label>
                 <input
+                    className={styles.input}
                     name="tags"
                     value={form.tags}
                     onChange={handleChange}
                 />
             </div>
-            <div>
-                <label>Статус</label>
-                <select name="status" value={form.status} onChange={handleChange}>
-                    <option value="draft">Черновик</option>
-                    <option value="published">Опубликован</option>
+            <div className={styles.field}>
+                <label className={styles.label}>{t("status")}</label>
+                <select className={styles.select} name="status" value={form.status} onChange={handleChange}>
+                    <option value="draft">{t("draft")}</option>
+                    <option value="published">{t("published")}</option>
                 </select>
             </div>
-            <button type="submit" disabled={isLoading}>Создать пост</button>
-            {isSuccess && <div style={{ color: "green" }}>Пост успешно создан!</div>}
-            {error && <div style={{ color: "red" }}>Ошибка при создании поста</div>}
+            <Button className={styles.button} type="submit" disabled={isLoading}>
+                {isLoading ? <Loader /> : t("create")}
+            </Button>
+            {isSuccess && <div className={styles.success}>{t("success")}</div>}
+            {error && <ErrorMessage message={t("error")} />}
         </form>
     );
 }; 
