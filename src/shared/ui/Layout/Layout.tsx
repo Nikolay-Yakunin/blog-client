@@ -1,10 +1,12 @@
-import { Outlet } from 'react-router';
+import { Outlet, Link } from 'react-router';
 import styles from './Layout.module.css';
 import { ButtonChangeTheme } from '@shared/ui/ButtonChangeTheme/ButtonChangeTheme';
 import { ButtonChangeLang } from '@shared/ui/ButtonChangeLang/ButtonChangeLang';
 import { useI18n } from '@app/providers/I18nProvider';
 import ru from './locales/ru.json';
 import en from './locales/en.json';
+import { Button } from '@shared/ui/Button/Button';
+import { FaUser } from 'react-icons/fa';
 
 const dict = { ru, en };
 
@@ -12,9 +14,12 @@ const Header = ({ title }: { title: string }) => (
     <header className={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span>{title}</span>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <ButtonChangeTheme />
                 <ButtonChangeLang />
+                <Link to="/auth">
+                    <Button><FaUser style={{ marginRight: 8 }} />{dict[useI18n().lang].login || 'Войти'}</Button>
+                </Link>
             </div>
         </div>
     </header>

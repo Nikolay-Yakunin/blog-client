@@ -1,5 +1,6 @@
 {
   "title": "BlogService",
   "sidebar": "Сайдбар",
-  "footer": "© 2025 BlogService"
+  "footer": "© 2025 BlogService",
+  "login": "Войти"
 } 
