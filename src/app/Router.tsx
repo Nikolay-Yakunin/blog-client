@@ -4,6 +4,7 @@ import Layout from '@shared/ui/Layout/Layout';
 import AuthPage from '@pages/AuthPage/AuthPage';
 import OAuthCallbackPage from '@pages/OAuthCallbackPage/OAuthCallbackPage';
 import { QueryAuthHandler } from '@pages/MainPage/QueryAuthHandler';
+import { CreatePostPage } from '@pages/CreatePostPage';
 
 const MainPage = () => <><QueryAuthHandler /><div>Главная страница</div></>;
 const PostPage = () => <div>Страница поста (динамический id)</div>;
@@ -16,6 +17,7 @@ export const AppRouter = () => (
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<MainPage />} />
+                    <Route path="post/create" element={<CreatePostPage />} />
                     <Route path="post/:id" element={<PostPage />} />
                     <Route path="profile" element={<ProfilePage />} />
                     <Route path="auth" element={<AuthPage />} />
