@@ -24,7 +24,6 @@ export const OAuthButtons: React.FC<OAuthButtonsProps> = ({
     const { lang } = useI18n();
     const t = locales[lang] || locales.ru;
 
-    // Хардкодим редирект на backend OAuth endpoint
     const handleGoogleClick = () => {
         window.location.href = 'https://blog-service-production-0f0d.up.railway.app/api/v1/auth/login/google';
     };

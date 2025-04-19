@@ -1,0 +1,8 @@
+.avatar {
+  display: inline-block;
+  border: 2px solid #eee;
+  transition: box-shadow 0.2s;
+}
+.avatar:hover {
+  box-shadow: 0 0 0 2px #1976d2;
+} 
