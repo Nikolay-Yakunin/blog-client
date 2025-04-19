@@ -1,6 +1,11 @@
 {
   "title": "BlogService",
-  "sidebar": "Sidebar",
+  "sidebar": {
+    "main": "Main",
+    "posts": "Posts",
+    "create": "Create post",
+    "profile": "Profile"
+  },
   "footer": "© 2025 BlogService",
   "login": "Sign in"
 } 

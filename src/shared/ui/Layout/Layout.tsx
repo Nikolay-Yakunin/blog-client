@@ -35,9 +35,16 @@ const Header = ({ title }: { title: string }) => {
     );
 };
 
-const Sidebar = ({ sidebar }: { sidebar: string }) => (
+const Sidebar = ({ sidebar }: { sidebar: any }) => (
     <aside className={styles.sidebar}>
-        {sidebar}
+        <nav>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <li><Link to="/">{sidebar.main}</Link></li>
+                <li><Link to="/posts">{sidebar.posts}</Link></li>
+                <li><Link to="/post/create">{sidebar.create}</Link></li>
+                <li><Link to="/profile">{sidebar.profile}</Link></li>
+            </ul>
+        </nav>
     </aside>
 );
 

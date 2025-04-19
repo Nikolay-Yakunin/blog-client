@@ -1,6 +1,11 @@
 {
   "title": "BlogService",
-  "sidebar": "Сайдбар",
+  "sidebar": {
+    "main": "Главная",
+    "posts": "Посты",
+    "create": "Создать пост",
+    "profile": "Профиль"
+  },
   "footer": "© 2025 BlogService",
   "login": "Войти"
 } 

@@ -35,8 +35,17 @@ export const postApi = createApi({
         body,
       }),
     }),
+    getPosts: builder.query<
+      PostResponse[],
+      { offset?: number; limit?: number }
+    >({
+      query: ({ offset = 0, limit = 10 } = {}) => ({
+        url: `posts?offset=${offset}&limit=${limit}`,
+        method: "GET",
+      }),
+    }),
     // Здесь будут другие endpoints (get, update, delete)
   }),
 });
 
-export const { useCreatePostMutation } = postApi;
+export const { useCreatePostMutation, useGetPostsQuery } = postApi;
