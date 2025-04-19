@@ -1,4 +1,4 @@
-import { Outlet, Link } from 'react-router';
+import { Outlet, Link, useNavigate } from 'react-router';
 import styles from './Layout.module.css';
 import { ButtonChangeTheme } from '@shared/ui/ButtonChangeTheme/ButtonChangeTheme';
 import { ButtonChangeLang } from '@shared/ui/ButtonChangeLang/ButtonChangeLang';
@@ -13,7 +13,12 @@ import { Avatar } from '@shared/ui/Avatar/Avatar';
 const dict = { ru, en };
 
 const Header = ({ title }: { title: string }) => {
-    const { isAuth, user } = useAuth();
+    const { isAuth, user, logout } = useAuth();
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
     return (
         <header className={styles.header}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -28,6 +33,11 @@ const Header = ({ title }: { title: string }) => {
                     )}
                     {isAuth && user?.avatar && (
                         <Avatar src={user.avatar} userId={user.id} size={40} />
+                    )}
+                    {isAuth && (
+                        <Button onClick={handleLogout} style={{ marginLeft: 8 }}>
+                            Выйти
+                        </Button>
                     )}
                 </div>
             </div>

@@ -28,7 +28,7 @@
   background: var(--color-bg-sidebar, #fafafa);
   border-right: 1px solid #eee;
   padding: 1rem;
-  display: none; 
+  display: block; 
   color: var(--text);
 }
 
