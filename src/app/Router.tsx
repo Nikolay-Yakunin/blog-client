@@ -3,8 +3,9 @@ import { Suspense } from 'react';
 import Layout from '@shared/ui/Layout/Layout';
 import AuthPage from '@pages/AuthPage/AuthPage';
 import OAuthCallbackPage from '@pages/OAuthCallbackPage/OAuthCallbackPage';
+import { QueryAuthHandler } from '@pages/MainPage/QueryAuthHandler';
 
-const MainPage = () => <div>Главная страница</div>;
+const MainPage = () => <><QueryAuthHandler /><div>Главная страница</div></>;
 const PostPage = () => <div>Страница поста (динамический id)</div>;
 const ProfilePage = () => <div>Профиль пользователя</div>;
 const NotFoundPage = () => <div>404 — Страница не найдена</div>;

@@ -1,38 +1,38 @@
-import { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, ReactNode } from 'react';
 import { User } from 'features/oauth/api/oauthApi';
 
 interface AuthContextProps {
     user: User | null;
     isAuth: boolean;
-    setUser: (user: User | null) => void;
+    setUser: (user: User | null, token?: string) => void;
     logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUserState] = useState<User | null>(() => {
+        const userStr = localStorage.getItem('user');
+        return userStr ? JSON.parse(userStr) : null;
+    });
     const isAuth = !!user;
 
-    // Попытка получить пользователя при монтировании (если токен в cookie)
-    useEffect(() => {
-        fetch('https://blog-service-production-0f0d.up.railway.app/api/v1/auth/me', {
-            credentials: 'include',
-        })
-            .then(async (res) => {
-                if (res.ok) {
-                    const data = await res.json();
-                    setUser(data.user);
-                } else {
-                    setUser(null);
-                }
-            })
-            .catch(() => setUser(null));
-    }, []);
+    // Восстанавливаем токен из localStorage (если есть)
+    // (можно добавить проверку срока действия токена)
+
+    const setUser = (user: User | null, token?: string) => {
+        setUserState(user);
+        if (user) {
+            localStorage.setItem('user', JSON.stringify(user));
+            if (token) localStorage.setItem('token', token);
+        } else {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+        }
+    };
 
     const logout = () => {
         setUser(null);
-        // Можно добавить запрос к backend для выхода
     };
 
     return (
