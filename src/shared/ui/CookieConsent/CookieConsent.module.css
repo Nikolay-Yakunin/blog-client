@@ -1,0 +1,26 @@
+.banner {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  background: var(--background, #222);
+  color: var(--color, #fff);
+  padding: 16px 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 10000;
+  max-width: 90vw;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .banner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 8px;
+    font-size: 0.95rem;
+  }
+} 

@@ -1,1 +1,16 @@
+:root,
+.theme-light {
+  --btn-bg: #fff;
+  --btn-color: #222;
+  --btn-bg-hover: #f0f0f0;
+  --background: #fff;
+  --text: #222;
+}
 
+.theme-dark {
+  --btn-bg: #222;
+  --btn-color: #fff;
+  --btn-bg-hover: #333;
+  --background: #181818;
+  --text: #fff;
+}

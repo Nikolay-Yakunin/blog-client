@@ -1,0 +1,21 @@
+.button {
+  background: var(--btn-bg, #fff);
+  color: var(--btn-color, #222);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.button:hover {
+  background: var(--btn-bg-hover, #f0f0f0);
+}
+
+@media (max-width: 600px) {
+  .button {
+    width: 100%;
+    margin-top: 8px;
+  }
+} 
