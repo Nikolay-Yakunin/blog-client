@@ -26,7 +26,16 @@ export interface PostResponse {
 
 export const postApi = createApi({
   reducerPath: "postApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://blog-service-production-0f0d.up.railway.app/api/v1/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://blog-service-production-0f0d.up.railway.app/api/v1/",
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     createPost: builder.mutation<PostResponse, PostCreateRequest>({
       query: (body) => ({
