@@ -108,16 +108,7 @@ export const CreatePostForm = () => {
             {/* Предпросмотр Markdown */}
             <div className={styles.field}>
                 <label className={styles.label}>{t("preview")}</label>
-                <div style={{
-                    border: '1px solid #e0e0e0',
-                    borderRadius: 8,
-                    background: '#fafbfc',
-                    padding: 16,
-                    minHeight: 80,
-                    fontSize: '1rem',
-                    color: '#222',
-                    overflowX: 'auto',
-                }}>
+                <div className={styles.preview}>
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{form.raw_content || t("preview_placeholder")}</ReactMarkdown>
                 </div>
             </div>
