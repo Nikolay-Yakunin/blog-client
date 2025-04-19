@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-export type Lang = 'ru';
+export type Lang = 'ru' | 'en';
 
 interface I18nContextProps {
     lang: Lang;
