@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useCreatePostMutation } from "@entities/post/api";
 import styles from "./CreatePostForm.module.css";
 import { Button } from "@shared/ui/Button/Button";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { useI18n } from "@app/providers/I18nProvider";
 import ru from "./locales/ru.json";
 import en from "./locales/en.json";
+import { Input } from "./ui/Input";
+import { Textarea } from "./ui/Textarea";
+import { Select } from "./ui/Select";
+import { MarkdownPreview } from "./ui/MarkdownPreview";
 
 // Временный Loader
 const Loader = () => <div style={{ textAlign: 'center', padding: '8px' }}>Загрузка...</div>;
@@ -72,67 +74,57 @@ export const CreatePostForm = () => {
     };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.field}>
-                <label className={styles.label}>{t("title")}</label>
-                <input
-                    className={styles.input}
+        <div className={styles.wrapper}>
+            <form className={styles.form + ' ' + styles.editColumn} onSubmit={handleSubmit}>
+                <Input
+                    label={t("title")}
                     name="title"
                     value={form.title}
                     onChange={handleChange}
                     required
+                    error={errors.title}
                 />
-                {errors.title && <span className={styles.error}>{errors.title}</span>}
-            </div>
-            <div className={styles.field}>
-                <label className={styles.label}>{t("description")}</label>
-                <input
-                    className={styles.input}
+                <Input
+                    label={t("description")}
                     name="description"
                     value={form.description}
                     onChange={handleChange}
                 />
-            </div>
-            <div className={styles.field}>
-                <label className={styles.label}>{t("content")}</label>
-                <textarea
-                    className={styles.textarea}
+                <Textarea
+                    label={t("content")}
                     name="raw_content"
                     value={form.raw_content}
                     onChange={handleChange}
                     rows={10}
                     required
+                    error={errors.raw_content}
                 />
-                {errors.raw_content && <span className={styles.error}>{errors.raw_content}</span>}
-            </div>
-            {/* Предпросмотр Markdown */}
-            <div className={styles.field}>
-                <label className={styles.label}>{t("preview")}</label>
-                <div className={styles.preview}>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{form.raw_content || t("preview_placeholder")}</ReactMarkdown>
-                </div>
-            </div>
-            <div className={styles.field}>
-                <label className={styles.label}>{t("tags")}</label>
-                <input
-                    className={styles.input}
+                <Input
+                    label={t("tags")}
                     name="tags"
                     value={form.tags}
                     onChange={handleChange}
                 />
-            </div>
-            <div className={styles.field}>
-                <label className={styles.label}>{t("status")}</label>
-                <select className={styles.select} name="status" value={form.status} onChange={handleChange}>
+                <Select
+                    label={t("status")}
+                    name="status"
+                    value={form.status}
+                    onChange={handleChange}
+                >
                     <option value="draft">{t("draft")}</option>
                     <option value="published">{t("published")}</option>
-                </select>
-            </div>
-            <Button className={styles.button} type="submit" disabled={isLoading}>
-                {isLoading ? <Loader /> : t("create")}
-            </Button>
-            {isSuccess && <div className={styles.success}>{t("success")}</div>}
-            {error && <ErrorMessage message={t("error")} />}
-        </form>
+                </Select>
+                <Button className={styles.button} type="submit" disabled={isLoading}>
+                    {isLoading ? <Loader /> : t("create")}
+                </Button>
+                {isSuccess && <div className={styles.success}>{t("success")}</div>}
+                {error && <ErrorMessage message={t("error")} />}
+            </form>
+            <MarkdownPreview
+                value={form.raw_content}
+                placeholder={t("preview_placeholder")}
+                label={t("preview")}
+            />
+        </div>
     );
 }; 

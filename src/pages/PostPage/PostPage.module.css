@@ -1,0 +1,38 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.meta {
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+.tags {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+.status {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+.content {
+  white-space: pre-wrap;
+  font-size: 1.1rem;
+  margin-top: 16px;
+}
+.hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+.error {
+  color: var(--error, #e53935);
+  margin: 16px 0;
+  font-size: 1.05rem;
+} 

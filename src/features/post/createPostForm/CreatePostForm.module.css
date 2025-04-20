@@ -1,88 +1,48 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+  justify-content: center;
+  padding: 24px;
+}
+
+.editColumn {
+  min-width: 320px;
+  max-width: 600px;
+  gap: 12px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 500px;
-  margin: 0 auto;
   padding: 32px 24px;
   background: var(--background, #fff);
   border-radius: 16px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.07);
   color: var(--text, #222);
+  width: 100%;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.label {
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
-.input, .textarea, .select {
-  padding: 10px 12px;
-  border: 1px solid var(--border, #e0e0e0);
-  border-radius: 8px;
-  font-size: 1rem;
-  background: var(--input-bg, #fafbfc);
-  color: var(--text, #222);
-  transition: border 0.2s;
-}
-.input:focus, .textarea:focus, .select:focus {
-  border: 1.5px solid var(--accent, #1976d2);
-  outline: none;
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.button {
-  padding: 12px 0;
-  background: var(--btn-bg, #1976d2);
-  color: var(--btn-color, #fff);
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.button:disabled {
-  background: #b3c7e6;
-  cursor: not-allowed;
-}
-
-.preview {
-  border: 1px solid var(--border, #e0e0e0);
-  border-radius: 8px;
-  background: var(--input-bg, #fafbfc);
-  padding: 16px;
-  min-height: 80px;
-  font-size: 1rem;
-  color: var(--text, #222);
-  overflow-x: auto;
-}
-
-.error {
-  color: var(--error, #e53935);
-  font-size: 0.95em;
-  margin-top: 2px;
-}
-.success {
-  color: var(--success, #43a047);
-  font-size: 1em;
-  margin-top: 8px;
-  text-align: center;
+@media (max-width: 899px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .editColumn, .previewColumn {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
-  .form {
-    padding: 16px 4px;
-    max-width: 100%;
+  .wrapper {
+    gap: 12px;
+    padding: 0 2px;
+  }
+  .editColumn, .previewColumn {
+    padding: 0;
   }
 } 

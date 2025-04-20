@@ -1,1 +1,5 @@
-
+option {
+  color: var(--text, #222);
+  background: var(--input-bg, #fafbfc);
+  font-size: 1rem;
+}

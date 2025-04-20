@@ -1,0 +1,9 @@
+{
+  "author": "Author",
+  "date": "Date",
+  "tags": "Tags",
+  "status": "Status",
+  "loading": "Loading post...",
+  "error": "Error loading post",
+  "not_found": "Post not found"
+} 

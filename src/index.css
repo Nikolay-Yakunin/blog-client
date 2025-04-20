@@ -6,11 +6,15 @@
   --btn-color: #222;
   --btn-bg-hover: #f0f0f0;
   --background: #fff;
+  --input-bg: #fafbfc;
   --text: #222;
   --color-bg-header: #f5f5f5;
   --color-bg-sidebar: #fafafa;
   --color-bg-footer: #f5f5f5;
   --font-family: 'Inter', Arial, sans-serif;
+  --error: #e53935;
+  --success: #43a047;
+  --accent: #1976d2;
 }
 
 .theme-dark {
@@ -18,11 +22,15 @@
   --btn-color: #fff;
   --btn-bg-hover: #333;
   --background: #181818;
+  --input-bg: #232323;
   --text: #fff;
   --color-bg-header: #232323;
   --color-bg-sidebar: #181818;
   --color-bg-footer: #232323;
   --font-family: 'Inter', Arial, sans-serif;
+  --error: #ff5252;
+  --success: #66bb6a;
+  --accent: #90caf9;
 }
 
 body {

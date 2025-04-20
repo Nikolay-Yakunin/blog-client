@@ -53,8 +53,15 @@ export const postApi = createApi({
         method: "GET",
       }),
     }),
+    getPost: builder.query<PostResponse, string>({
+      query: (id) => ({
+        url: `posts/${id}`,
+        method: "GET",
+      }),
+    }),
     // Здесь будут другие endpoints (get, update, delete)
   }),
 });
 
-export const { useCreatePostMutation, useGetPostsQuery } = postApi;
+export const { useCreatePostMutation, useGetPostsQuery, useGetPostQuery } =
+  postApi;
