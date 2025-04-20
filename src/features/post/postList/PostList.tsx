@@ -1,5 +1,4 @@
 import { useGetPostsQuery } from '@entities/post/api';
-import React from 'react';
 import { PostCard } from './PostCard';
 
 interface PostListProps {

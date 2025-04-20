@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router';
 import { useGetPostQuery } from '@entities/post/api';
 import { useI18n } from '@app/providers/I18nProvider';
