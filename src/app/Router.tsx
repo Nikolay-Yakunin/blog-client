@@ -6,9 +6,9 @@ import OAuthCallbackPage from '@pages/OAuthCallbackPage/OAuthCallbackPage';
 import { QueryAuthHandler } from '@pages/MainPage/QueryAuthHandler';
 import { CreatePostPage } from '@pages/CreatePostPage';
 import { PostsPage } from '@pages/PostsPage';
+import  PostPage  from '@pages/PostPage';
 
 const MainPage = () => <><QueryAuthHandler /><div>Главная страница</div></>;
-const PostPage = () => <div>Страница поста (динамический id)</div>;
 const ProfilePage = () => <div>Профиль пользователя</div>;
 const NotFoundPage = () => <div>404 — Страница не найдена</div>;
 
