@@ -2,5 +2,8 @@
   "author": "Author",
   "date": "Date",
   "tags": "Tags",
-  "status": "Status"
+  "status": "Status",
+  "loading": "Loading...",
+  "error_loading_posts": "Failed to load posts",
+  "not_found": "Posts not found"
 } 

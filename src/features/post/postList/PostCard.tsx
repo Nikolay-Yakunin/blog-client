@@ -36,6 +36,7 @@ export const PostCard: React.FC<PostCardProps> = ({ id, title, description, auth
             {status && (
                 <div className={styles.status}><b>{t('status')}:</b> {status}</div>
             )}
+            
         </Link>
     );
 }; 

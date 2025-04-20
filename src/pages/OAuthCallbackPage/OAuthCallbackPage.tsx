@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router';
 import { useGoogleCallbackQuery } from '@features/oauth/api/oauthApi';
+import { Error } from '@shared/ui/Error/Error';
+import ru from './locales/ru.json';
+import en from './locales/en.json';
+import { useI18n } from '@app/providers/I18nProvider';
+
+const translations = { ru, en };
+type LocaleKey = keyof typeof ru;
 
 const OAuthCallbackPage: React.FC = () => {
     const [params] = useSearchParams();
     const navigate = useNavigate();
+    const { lang } = useI18n();
+    const t = (key: LocaleKey): string => translations[lang][key] || key;
     const code = params.get('code');
     const state = params.get('state') || undefined;
 
@@ -12,14 +21,13 @@ const OAuthCallbackPage: React.FC = () => {
 
     useEffect(() => {
         if (data && data.user) {
-            // Здесь можно сохранить пользователя в redux, если нужно
-            navigate('/'); // редирект на главную после успешного входа
+            navigate('/');
         }
     }, [data, navigate]);
 
-    if (isLoading) return <div>Загрузка...</div>;
-    if (error) return <div>Ошибка авторизации. Попробуйте ещё раз.</div>;
-    return <div>Авторизация...</div>;
+    if (isLoading) return <div>{t('loading')}</div>;
+    if (error) return <Error message={t('error')} />;
+    return <div>{t('auth_in_progress')}</div>;
 };
 
 export default OAuthCallbackPage; 

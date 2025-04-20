@@ -1,0 +1,5 @@
+{
+  "loading": "Loading...",
+  "error": "Authorization error. Please try again.",
+  "auth_in_progress": "Authorizing..."
+} 

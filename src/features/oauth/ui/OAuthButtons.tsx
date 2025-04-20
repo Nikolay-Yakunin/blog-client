@@ -5,6 +5,7 @@ import { useI18n } from '@app/providers/I18nProvider';
 import ru from './locales/ru.json';
 import en from './locales/en.json';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { Error } from '@shared/ui/Error/Error';
 
 const locales = { ru, en };
 
@@ -47,7 +48,7 @@ export const OAuthButtons: React.FC<OAuthButtonsProps> = ({
                 <FaGithub style={{ marginRight: 8 }} />{t.github}
             </Button>
             {loading && <div className={styles.loader}>Загрузка...</div>}
-            {error && <div className={styles.error}>{error}</div>}
+            {error && <Error message={error} />}
         </div>
     );
 }; 

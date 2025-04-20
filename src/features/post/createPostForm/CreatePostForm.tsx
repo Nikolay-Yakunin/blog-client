@@ -9,13 +9,10 @@ import { Input } from "./ui/Input";
 import { Textarea } from "./ui/Textarea";
 import { Select } from "./ui/Select";
 import { MarkdownPreview } from "./ui/MarkdownPreview";
+import { Error } from '@shared/ui/Error/Error';
 
 // Временный Loader
 const Loader = () => <div style={{ textAlign: 'center', padding: '8px' }}>Загрузка...</div>;
-// Временный ErrorMessage
-const ErrorMessage = ({ message }: { message: string }) => (
-    <div className={styles.error}>{message}</div>
-);
 
 const translations = { ru, en };
 
@@ -118,7 +115,7 @@ export const CreatePostForm = () => {
                     {isLoading ? <Loader /> : t("create")}
                 </Button>
                 {isSuccess && <div className={styles.success}>{t("success")}</div>}
-                {error && <ErrorMessage message={t("error")} />}
+                {error && <Error message={t("error")} />}
             </form>
             <MarkdownPreview
                 value={form.raw_content}
