@@ -1,0 +1,18 @@
+.loader {
+  width: var(--loader-size, 40px);
+  height: var(--loader-size, 40px);
+  border: var(--loader-thickness, 4px) solid var(--color-bg-sidebar, #fafafa);
+  border-top: var(--loader-thickness, 4px) solid var(--accent, #1976d2);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-sizing: border-box;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

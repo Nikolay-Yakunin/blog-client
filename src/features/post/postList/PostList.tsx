@@ -4,6 +4,7 @@ import ru from './locales/ru.json';
 import en from './locales/en.json';
 import { useI18n } from '@app/providers/I18nProvider';
 import { Error } from '@shared/ui/Error/Error';
+import { Loader } from '@shared/ui/Loader';
 
 interface PostListProps {
     offset?: number;
@@ -18,7 +19,7 @@ export const PostList = ({ offset = 0, limit = 10 }: PostListProps) => {
     const { lang } = useI18n();
     const t = (key: LocaleKey): string => translations[lang][key] || key;
 
-    if (isLoading) return <div>{t('loading')}</div>;
+    if (isLoading) return <Loader />;
     if (error) return <Error message={t('error_loading_posts')} />;
     if (!data || data.length === 0) return <div>{t('not_found')}</div>;
 
